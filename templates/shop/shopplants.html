@@ -1,0 +1,26 @@
+{% extends "shop/base.html" %}
+{% load static %}
+{% block title %}Shop Plants{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Shop Plants</h2>
+    <p>Indoor and Outdoor plants available for your home and garden.</p>
+
+    <div class="cards">
+        {% for f in flowers %}
+        <div class="card">
+            <img src="{{ f.image.url }}" class="flower-img">
+            <h3>{{ f.name }}</h3>
+            <p>{{ f.description }}</p>
+            <p><b>Rs. {{ f.price }}</b></p>
+
+            <a href="{% url 'add_to_cart' f.id %}" class="btn small">Add to Cart</a>
+            <a href="{% url 'buy_now' f.id %}" class="btn small">Buy Now</a>
+        </div>
+        {% empty %}
+        <p>No plants available.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

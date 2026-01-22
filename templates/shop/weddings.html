@@ -1,0 +1,26 @@
+{% extends "shop/base.html" %}
+{% load static %}
+{% block title %}Weddings{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Wedding Flower Services</h2>
+    <p>Make your wedding more beautiful with our floral decorations.</p>
+
+    <div class="cards">
+        {% for f in flowers %}
+        <div class="card">
+            <img src="{{ f.image.url }}" class="flower-img">
+            <h3>{{ f.name }}</h3>
+            <p>{{ f.description }}</p>
+            <p><b>Rs. {{ f.price }}</b></p>
+
+            <a href="{% url 'add_to_cart' f.id %}" class="btn small">Add to Cart</a>
+            <a href="{% url 'buy_now' f.id %}" class="btn small">Buy Now</a>
+        </div>
+        {% empty %}
+        <p>No wedding items available.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
